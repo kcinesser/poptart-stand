@@ -1,0 +1,308 @@
+@import './variables';
+@import './mixins';
+@import './Reset.scss';
+@import './fontawesome/scss/fontawesome.scss';
+@import "./fontawesome/scss/solid.scss";
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,700|Roboto:300,400,700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+body, p, * {
+  font-size: $font-norm;
+  font-family: 'Roboto', sans-serif;
+  color: $text-color;
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: $font-xlg;
+  letter-spacing: 2px;
+
+  &.logo {
+    font-weight: 700;
+    text-shadow: -3px 3px $primary-color, -6px 6px $pink;
+    color: $purple;
+  }
+}
+
+h2 {
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 1.5px;
+  font-size: $font-lg;
+  margin-bottom: $three;
+}
+
+h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: $font-md;
+  letter-spacing: -2px;
+
+}
+
+button, .button {
+  appearance: none;
+  color: #fff;
+  border: none;
+  box-shadow: $shadow;
+  cursor: pointer;
+
+  &.button--new {
+    @extend %fa-icon;
+    @extend .fas;
+    padding: $two;
+    background-color: $primary-color;
+    border-radius: 50%;
+
+    &:before {
+      content: fa-content($fa-var-plus);
+    }
+  }
+
+  &.button--user {
+    @extend %fa-icon;
+    @extend .fas;
+    padding: $two;
+    background-color: $primary-color;
+    border-radius: 50%;
+
+    &:before {
+      content: fa-content($fa-var-user);
+    }
+  }
+
+  &.button--close {
+    @extend %fa-icon;
+    @extend .fas;
+    padding: $two;
+    background-color: $pink;
+    border-radius: 50%;
+
+    &:before {
+      content: fa-content($fa-var-times);
+    }
+  }
+
+  &.button--text {
+    background-color: $pink;
+    border-radius: 5px;
+    box-shadow: none;
+    position: relative;
+    display: block;
+    padding: 0;
+
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      background-color: $pink;
+      width: 12px;
+      height: 12px;
+      position: absolute;
+      transition: all .15s ease;
+    }
+
+    &:before {
+      top: 2px;
+      left: 0;
+      transform-origin: top left;
+      transform: rotate(-45deg) scale(0);
+      border-radius: 2px;
+    }
+
+    &:after {
+      right: 2px;
+      bottom: 0;
+      transform-origin: bottom right;
+      transform: rotate(45deg) scale(0);
+      border-radius: 2px;
+    }
+
+    .button--text__inner {
+      display: block;
+      transform: translate(0, 0);
+      transition: all .15s ease;
+      position: relative;
+      z-index: 10;
+      color: #fff;
+      border-radius: 4px;
+      padding: $three $six;
+      background-color: $primary-color;
+    }
+
+    &:hover .button--text__inner {
+      transform: translate(6px, -6px);
+    }
+
+    &:hover {
+      &:before {
+        transform: rotate(-45deg) scale(1);
+      }
+
+      &:after {
+        transform: rotate(45deg) scale(1);
+      }
+
+      text-shadow: -2px 2px $purple;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.main-content {
+  padding: $three;
+}
+
+.nav {
+  width: 100%;
+
+  .nav__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $three;
+  }
+}
+
+.page-hero {
+  text-align: center;
+  margin-bottom: $six;
+
+  h1 {
+    margin-right: $three;
+  }
+
+  &.center {
+    align-items: center;
+  }
+}
+
+.poptart-table {
+  .poptart-table__col {
+    width: $fourth;
+  }
+
+  .poptart-table__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: $font-md;
+    padding: $three;
+    text-transform: uppercase;
+  }
+
+  .poptart-table__item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $three;
+    
+    .poptart-table__img {
+      max-height: 75px;
+    }
+
+    &:nth-child(even) {
+      background: #efefef;
+    }
+  }
+}
+
+.poptart-container {
+  width: 100%;
+  display: flex;
+  padding: $six 0;
+
+  .poptart-card {
+    width: $third;
+    text-align: center;
+    position: relative;
+
+    img {
+      max-height: 180px;
+      margin-bottom: $three;
+    }
+
+    .poptart-card__stock-warning {
+      font-weight: 700;
+      font-size: $font-lg;
+      position: absolute;
+      top: 35%;
+      width: 100%;
+      color: $pink;
+      text-shadow: -5px 3px $primary-color;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+    }
+
+    button {
+      margin: auto;
+    }
+
+    &:hover:nth-child(odd) {
+      img {
+        filter: drop-shadow(-5px 5px $pink);
+        transform: translate(5px, -5px);
+      }
+
+      h3 {
+        color: $purple;
+        font-weight: 700;
+        transform: translate(5px, 3px);
+      }
+    }
+
+    &:hover:nth-child(even) {
+      img {
+        filter: drop-shadow(-5px 5px $primary-color);
+        transform: translate(5px, -5px);
+      }
+
+      h3 {
+        color: $purple;
+        text-shadow: -5px 3px $primary-color;
+        font-weight: 700;
+        transform: translate(5px, 3px);
+      }    
+    }
+  }
+}
+
+.modal-background {
+  display: block;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: rgba(200, 200, 200, .25);  
+  backdrop-filter: blur(7px);
+
+  .button--close {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+  }
+
+  .modal-content {
+    width: 50%;
+    margin: auto;
+    border-radius: 5px;
+    top: 20%;
+    position: relative;
+    padding: $six;
+    background-color: #fff;
+    box-shadow: -5px 5px $primary-color, -10px 10px $pink;
+  }
+}
